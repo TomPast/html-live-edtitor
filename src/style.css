@@ -17,8 +17,8 @@ html, body { height: 100%; overflow: hidden; }
   position: fixed;
   top: 1rem;
   left: 1rem;
-  bottom: 1rem;
   width: 580px;
+  height: calc(100vh - 2rem);
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -31,9 +31,11 @@ html, body { height: 100%; overflow: hidden; }
     0 8px 40px rgba(0, 0, 0, 0.50),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
   overflow: hidden;
+  min-width: 320px;
+  min-height: 200px;
 }
 
-/* Toolbar */
+/* Toolbar — drag handle */
 #editor-toolbar {
   display: flex;
   align-items: center;
@@ -41,20 +43,35 @@ html, body { height: 100%; overflow: hidden; }
   padding: 0.65rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   flex-shrink: 0;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+#editor-toolbar.dragging { cursor: grabbing; }
+
+/* Traffic light buttons */
+.traffic-lights {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-right: 8px;
 }
 
-/* Traffic lights */
-#editor-toolbar::before {
-  content: '';
-  display: block;
-  width: 10px;
-  height: 10px;
+.tl-btn {
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: #ff5f57;
-  box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #28c840;
-  flex-shrink: 0;
-  margin-right: 32px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.15s, filter 0.15s;
 }
+.tl-btn:hover { filter: brightness(1.25); }
+.tl-btn:active { filter: brightness(0.85); }
+
+.tl-close    { background: #ff5f57; }
+.tl-minimize { background: #ffbd2e; }
+.tl-maximize { background: #28c840; }
 
 .toolbar-title {
   font-family: 'Segoe UI', system-ui, sans-serif;
@@ -64,13 +81,59 @@ html, body { height: 100%; overflow: hidden; }
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.45);
   user-select: none;
+  pointer-events: none;
 }
+
+/* Resize handle — bottom-right corner */
+#resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  cursor: nwse-resize;
+  z-index: 2;
+}
+#resize-handle::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Minimized state — toolbar only, docked to bottom */
+#editor-panel.minimized {
+  top: auto !important;
+  bottom: 1rem;
+  left: 1rem !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0;
+  border-radius: 10px;
+}
+#editor-panel.minimized #editor-mount { display: none; }
+#editor-panel.minimized #resize-handle { display: none; }
+#editor-panel.minimized #editor-toolbar { border-bottom: none; }
+
+/* Maximized state — fill viewport with margin */
+#editor-panel.maximized {
+  top: 1rem !important;
+  left: 1rem !important;
+  width: calc(100vw - 2rem) !important;
+  height: calc(100vh - 2rem) !important;
+}
+#editor-panel.maximized #resize-handle { display: none; }
+
 
 /* CodeMirror mount */
 #editor-mount {
   flex: 1;
   overflow: hidden;
-  min-height: 0; /* allows flex item to shrink below content */
+  min-height: 0;
 }
 
 /* CodeMirror overrides — transparent for glass effect */

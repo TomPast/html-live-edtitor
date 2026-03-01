@@ -13,9 +13,15 @@
     <!-- Layer 1: floating editor panel with glass effect -->
     <div id="editor-panel">
       <div id="editor-toolbar">
+        <div class="traffic-lights">
+          <button class="tl-btn tl-close" title="Close (Ctrl+E)"></button>
+          <button class="tl-btn tl-minimize" title="Minimize"></button>
+          <button class="tl-btn tl-maximize" title="Maximize"></button>
+        </div>
         <span class="toolbar-title">HTML Live Editor</span>
       </div>
       <div id="editor-mount"></div>
+      <div id="resize-handle"></div>
     </div>
 
     <script type="module" src="/src/main.js"></script>

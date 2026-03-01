@@ -3,6 +3,7 @@ import { EditorState } from "@codemirror/state";
 import { basicSetup } from "codemirror";
 import { html } from "@codemirror/lang-html";
 import { oneDark } from "@codemirror/theme-one-dark";
+import "./panel.js";
 
 const DEFAULT_HTML = `<!doctype html>
 <html lang="en">
