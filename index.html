@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Live Editor</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Layer 0: full-screen iframe — HTML preview in background -->
+    <iframe id="preview" sandbox="allow-scripts"></iframe>
+
+    <!-- Layer 1: floating editor panel with glass effect -->
+    <div id="editor-panel">
+      <div id="editor-toolbar">
+        <span class="toolbar-title">HTML Live Editor</span>
+      </div>
+      <div id="editor-mount"></div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
