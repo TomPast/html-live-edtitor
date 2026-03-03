@@ -162,3 +162,113 @@ html, body { height: 100%; overflow: hidden; }
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
 }
+
+/* Console toggle button in toolbar */
+#console-toggle {
+  margin-left: auto;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 0.2rem 0.55rem;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+#console-toggle:hover {
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+#console-toggle.active {
+  color: #28c840;
+  border-color: rgba(40, 200, 64, 0.35);
+}
+
+/* Console panel */
+#console-panel {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(0, 0, 0, 0.25);
+}
+#console-panel.hidden { display: none; }
+
+#console-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+  gap: 0.5rem;
+}
+
+.console-title {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255, 255, 255, 0.35);
+  flex: 1;
+}
+
+#console-clear {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+#console-clear:hover {
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+#console-output {
+  flex: 1;
+  overflow-y: auto;
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  padding: 0.25rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+#console-output::-webkit-scrollbar { width: 6px; }
+#console-output::-webkit-scrollbar-track { background: transparent; }
+#console-output::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+.console-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.12rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.025);
+}
+.console-entry:hover { background: rgba(255, 255, 255, 0.03); }
+.console-entry.log  { color: rgba(255, 255, 255, 0.75); }
+.console-entry.info { color: #3b9eff; }
+.console-entry.warn { color: #ffbd2e; background: rgba(255, 189, 46, 0.05); }
+.console-entry.error { color: #ff5f57; background: rgba(255, 95, 87, 0.07); }
+
+.console-icon { opacity: 0.7; flex-shrink: 0; font-style: normal; }
+.console-msg  { flex: 1; word-break: break-all; white-space: pre-wrap; }
+.console-time {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.62rem;
+  flex-shrink: 0;
+}
+
+/* Minimized state hides console */
+#editor-panel.minimized #console-panel { display: none; }

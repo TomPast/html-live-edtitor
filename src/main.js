@@ -4,6 +4,7 @@ import { basicSetup } from "codemirror";
 import { html } from "@codemirror/lang-html";
 import { oneDark } from "@codemirror/theme-one-dark";
 import "./panel.js";
+import { injectConsoleScript, clearConsole } from "./console.js";
 
 const DEFAULT_HTML = `<!doctype html>
 <html lang="en">
@@ -77,7 +78,8 @@ const preview = document.getElementById("preview");
 const editorMount = document.getElementById("editor-mount");
 
 function updatePreview(content) {
-  preview.srcdoc = content;
+  clearConsole();
+  preview.srcdoc = injectConsoleScript(content);
 }
 
 const state = EditorState.create({

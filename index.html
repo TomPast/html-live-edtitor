@@ -19,8 +19,16 @@
           <button class="tl-btn tl-maximize" title="Maximize"></button>
         </div>
         <span class="toolbar-title">HTML Live Editor</span>
+        <button id="console-toggle" title="Toggle Console (Ctrl+`)">Console</button>
       </div>
       <div id="editor-mount"></div>
+      <div id="console-panel" class="hidden">
+        <div id="console-toolbar">
+          <span class="console-title">Console</span>
+          <button id="console-clear">Clear</button>
+        </div>
+        <div id="console-output"></div>
+      </div>
       <div id="resize-handle"></div>
     </div>
 
