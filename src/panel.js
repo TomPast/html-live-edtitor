@@ -24,7 +24,10 @@ function restorePanelRect(rect) {
 }
 
 function isConstrained() {
-  return panel.classList.contains("minimized") || panel.classList.contains("maximized");
+  return (
+    panel.classList.contains("minimized") ||
+    panel.classList.contains("maximized")
+  );
 }
 
 /* Drag */
@@ -50,8 +53,14 @@ toolbar.addEventListener("pointermove", (e) => {
   if (!isDragging) return;
   const maxX = window.innerWidth - dragPanelW;
   const maxY = Math.max(0, window.innerHeight - dragPanelH);
-  const newX = Math.max(0, Math.min(panelStartX + (e.clientX - dragStartX), maxX));
-  const newY = Math.max(0, Math.min(panelStartY + (e.clientY - dragStartY), maxY));
+  const newX = Math.max(
+    0,
+    Math.min(panelStartX + (e.clientX - dragStartX), maxX)
+  );
+  const newY = Math.max(
+    0,
+    Math.min(panelStartY + (e.clientY - dragStartY), maxY)
+  );
   panel.style.left = newX + "px";
   panel.style.top = newY + "px";
 });
@@ -83,8 +92,10 @@ resizeHandle.addEventListener("pointerdown", (e) => {
 
 resizeHandle.addEventListener("pointermove", (e) => {
   if (!isResizing) return;
-  panel.style.width = Math.max(320, startWidth + (e.clientX - resizeStartX)) + "px";
-  panel.style.height = Math.max(200, startHeight + (e.clientY - resizeStartY)) + "px";
+  panel.style.width =
+    Math.max(320, startWidth + (e.clientX - resizeStartX)) + "px";
+  panel.style.height =
+    Math.max(200, startHeight + (e.clientY - resizeStartY)) + "px";
 });
 
 resizeHandle.addEventListener("pointerup", (e) => {
@@ -141,3 +152,18 @@ document.addEventListener("keydown", (e) => {
     toggleMinimize();
   }
 });
+
+/* Code toggle */
+const codeToggle = document.getElementById("code-toggle");
+const codeToggleLabel = codeToggle.querySelector("span");
+let panelHidden = false;
+
+function togglePanel() {
+  panelHidden = !panelHidden;
+  panel.classList.toggle("hidden", panelHidden);
+  codeToggle.classList.toggle("active", !panelHidden);
+  codeToggleLabel.textContent = panelHidden ? "Show Code" : "Hide Code";
+}
+
+codeToggle.classList.add("active");
+codeToggle.addEventListener("click", togglePanel);

@@ -33,6 +33,36 @@ html, body { height: 100%; overflow: hidden; }
   overflow: hidden;
   min-width: 320px;
   min-height: 200px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hidden state — slide left + fade */
+#editor-panel.hidden {
+  transform: translateX(calc(-100% - 2rem));
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Code toggle button */
+#code-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  padding: 4px 10px;
+  font: 600 0.7rem 'Segoe UI', system-ui, sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(12, 12, 20, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+#code-toggle:hover,
+#code-toggle.active {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(12, 12, 20, 0.6);
 }
 
 /* Toolbar — drag handle */
