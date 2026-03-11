@@ -22,10 +22,10 @@ html, body { height: 100%; overflow: hidden; }
   z-index: 1;
   display: flex;
   flex-direction: column;
-  background: rgba(12, 12, 20, 0.45);
+  background: rgba(12, 12, 20, 0.82);
   backdrop-filter: blur(14px) saturate(160%);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   box-shadow:
     0 8px 40px rgba(0, 0, 0, 0.50),
@@ -171,7 +171,11 @@ html, body { height: 100%; overflow: hidden; }
 #editor-mount .cm-editor,
 #editor-mount .cm-scroller,
 #editor-mount .cm-gutters { background: transparent !important; }
-#editor-mount .cm-gutters { border-right: 1px solid rgba(255, 255, 255, 0.07); }
+#editor-mount .cm-gutters {
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
 #editor-mount .cm-activeLine { background-color: rgba(255, 255, 255, 0.04) !important; }
 #editor-mount .cm-activeLineGutter { background-color: rgba(255, 255, 255, 0.06) !important; }
 #editor-mount .cm-selectionBackground,
