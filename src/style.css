@@ -231,12 +231,12 @@ body {
 }
 
 #editor-mount .cm-editor,
-#editor-mount .cm-scroller,
-#editor-mount .cm-gutters {
+#editor-mount .cm-scroller {
   background: transparent !important;
 }
 
 #editor-mount .cm-gutters {
+  background: var(--surface) !important;
   border-right: 1px solid var(--border);
 }
 
