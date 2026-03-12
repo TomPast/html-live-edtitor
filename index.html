@@ -5,38 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML Live Editor</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <!-- Layer 0: full-screen iframe — HTML preview in background -->
-    <iframe id="preview" sandbox="allow-scripts"></iframe>
-
-    <!-- Layer 1: floating editor panel with glass effect -->
-    <div id="editor-panel">
-      <div id="editor-toolbar">
-        <div class="traffic-lights">
-          <button class="tl-btn tl-close" title="Close (Ctrl+E)"></button>
-          <button class="tl-btn tl-minimize" title="Minimize"></button>
-          <button class="tl-btn tl-maximize" title="Maximize"></button>
+    <div id="app">
+      <main id="workspace">
+        <div id="editor-pane">
+          <header id="topbar">
+            <span class="toolbar-title"><span class="dot"></span>editor</span>
+            <span id="save-status">saved</span>
+            <div class="toolbar-spacer"></div>
+            <button id="reset-btn" title="Reset to default">reset</button>
+            <button id="export-btn" title="Download as HTML (Ctrl+S)">export</button>
+            <button id="share-btn" title="Share code">share</button>
+            <button id="code-toggle" title="Collapse editor (Ctrl+E)"><span>collapse</span></button>
+          </header>
+          <div id="editor-mount"></div>
         </div>
-        <span class="toolbar-title">HTML Live Editor</span>
-        <span id="save-status">✓ Saved</span>
-      </div>
-      <div id="editor-mount"></div>
-      <div id="resize-handle"></div>
+        <div id="divider"></div>
+        <div id="preview-pane">
+          <iframe id="preview" sandbox="allow-scripts"></iframe>
+        </div>
+      </main>
+      <button id="expand-btn" title="Show editor (Ctrl+E)"><span class="dot"></span><span>editor</span></button>
     </div>
-
-    <button id="reset-btn" title="Reset to default">
-      ↺ <span>Reset</span>
-    </button>
-    <button id="export-btn" title="Download as HTML (Ctrl+S)">
-      <span>Export</span>
-    </button>
-    <button id="share-btn" title="Share code"><span>Share</span></button>
-    <button id="code-toggle" title="Toggle code">
-      <span>Hide Code</span>
-    </button>
-
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

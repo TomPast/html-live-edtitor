@@ -6,7 +6,7 @@ import { oneDark } from "@codemirror/theme-one-dark";
 import { saveContent, loadContent, clearAll } from "./storage.js";
 import { initExport } from "./export.js";
 import { initShare, getSharedContent } from "./share.js";
-import "./panel.js";
+import { resetLayout } from "./panel.js";
 
 const DEFAULT_HTML = `<!doctype html>
 <html lang="en">
@@ -120,11 +120,5 @@ document.getElementById("reset-btn").addEventListener("click", () => {
     changes: { from: 0, to: view.state.doc.length, insert: DEFAULT_HTML },
   });
   updatePreview(DEFAULT_HTML);
-  /* Reset panel to default position/state */
-  const panel = document.getElementById("editor-panel");
-  panel.classList.remove("minimized", "maximized", "hidden");
-  panel.style.top = "";
-  panel.style.left = "";
-  panel.style.width = "";
-  panel.style.height = "";
+  resetLayout();
 });

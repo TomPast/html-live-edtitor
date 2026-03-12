@@ -2,8 +2,7 @@
 
 const KEYS = {
   content: "hle:content",
-  panel: "hle:panel",
-  panelState: "hle:panelState",
+  split: "hle:split",
 };
 
 /* Debounce helper */
@@ -17,7 +16,7 @@ function debounce(fn, ms) {
 
 /* Save indicator */
 let fadeTimer;
-export function flashStatus(text = "✓ Saved") {
+export function flashStatus(text = "saved") {
   const el = document.getElementById("save-status");
   if (!el) return;
   el.textContent = text;
@@ -44,31 +43,20 @@ export function clearContent() {
   localStorage.removeItem(KEYS.content);
 }
 
-/* Panel rect */
-export function savePanelRect(rect) {
+/* Split position */
+export function saveSplit(data) {
   try {
-    localStorage.setItem(KEYS.panel, JSON.stringify(rect));
+    localStorage.setItem(KEYS.split, JSON.stringify(data));
   } catch { /* ignore */ }
 }
 
-export function loadPanelRect() {
+export function loadSplit() {
   try {
-    const raw = localStorage.getItem(KEYS.panel);
+    const raw = localStorage.getItem(KEYS.split);
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
   }
-}
-
-/* Panel state */
-export function savePanelState(state) {
-  try {
-    localStorage.setItem(KEYS.panelState, state);
-  } catch { /* ignore */ }
-}
-
-export function loadPanelState() {
-  return localStorage.getItem(KEYS.panelState);
 }
 
 /* Reset all */

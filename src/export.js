@@ -14,7 +14,7 @@ export function initExport(getContent) {
     a.download = "index.html";
     a.click();
     URL.revokeObjectURL(url);
-    flashStatus("✓ Exported");
+    flashStatus("exported");
   }
 
   btn.addEventListener("click", doExport);

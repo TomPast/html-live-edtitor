@@ -55,7 +55,7 @@ function showShareModal(url) {
   copyBtn.addEventListener("click", () => {
     navigator.clipboard.writeText(url).then(() => {
       copyBtn.textContent = "Copied!";
-      flashStatus("✓ Link copied");
+      flashStatus("link copied");
       setTimeout(() => { copyBtn.textContent = "Copy"; }, 1500);
     });
   });
