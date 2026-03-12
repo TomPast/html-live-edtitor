@@ -84,6 +84,19 @@ export function resetLayout() {
   persistSplit();
 }
 
+/* Mobile tabs */
+const mobileTabs = document.getElementById("mobile-tabs");
+const mobileTabBtns = mobileTabs.querySelectorAll(".mobile-tab");
+
+mobileTabBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const tab = btn.dataset.tab;
+    mobileTabBtns.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    workspace.classList.toggle("mobile-show-preview", tab === "preview");
+  });
+});
+
 /* Restore saved split on load */
 const saved = loadSplit();
 if (saved && saved.split) {

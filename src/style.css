@@ -363,3 +363,138 @@ body {
 .share-modal-copy:hover {
   border-color: var(--border-hover);
 }
+
+/* Mobile tab bar */
+#mobile-tabs {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: 48px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 0;
+}
+
+.mobile-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-tab.active {
+  color: var(--accent);
+}
+
+.mobile-tab.active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 0 0 2px 2px;
+}
+
+.mobile-tab-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  #mobile-tabs {
+    display: flex;
+  }
+
+  #workspace {
+    flex-direction: column;
+    padding-bottom: 48px;
+  }
+
+  #editor-pane {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex-shrink: 1;
+    flex: 1;
+    transition: none;
+  }
+
+  #editor-pane.collapsed {
+    display: none;
+  }
+
+  #divider {
+    display: none;
+  }
+
+  #preview-pane {
+    min-width: 0;
+    flex: 1;
+  }
+
+  #preview-pane.mobile-hidden {
+    display: none;
+  }
+
+  #expand-btn {
+    display: none !important;
+  }
+
+  /* Show editor by default, hide preview */
+  #workspace.mobile-show-preview #editor-pane {
+    display: none;
+  }
+
+  #workspace.mobile-show-preview #preview-pane {
+    display: flex;
+  }
+
+  #workspace:not(.mobile-show-preview) #preview-pane {
+    display: none;
+  }
+
+  #workspace:not(.mobile-show-preview) #editor-pane {
+    display: flex;
+  }
+
+  /* Topbar adjustments */
+  #topbar {
+    padding: 0 10px;
+    gap: 4px;
+    min-height: var(--bar-h);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  #topbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  #topbar button {
+    padding: 4px 8px;
+    font-size: 0.55rem;
+  }
+
+  #code-toggle {
+    display: none !important;
+  }
+}
