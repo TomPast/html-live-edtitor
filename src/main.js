@@ -7,6 +7,7 @@ import { saveContent, loadContent, clearAll } from "./storage.js";
 import { initExport } from "./export.js";
 import { initShare, getSharedContent } from "./share.js";
 import { resetLayout } from "./panel.js";
+import { injectConsole, clearOnRefresh, initConsole } from "./console.js";
 
 const DEFAULT_HTML = `<!doctype html>
 <html lang="en">
@@ -80,7 +81,8 @@ const preview = document.getElementById("preview");
 const editorMount = document.getElementById("editor-mount");
 
 function updatePreview(content) {
-  preview.srcdoc = content;
+  clearOnRefresh();
+  preview.srcdoc = injectConsole(content);
 }
 
 const initialDoc = getSharedContent() || loadContent() || DEFAULT_HTML;
@@ -111,6 +113,7 @@ updatePreview(initialDoc);
 
 initExport(() => view.state.doc.toString());
 initShare(() => view.state.doc.toString());
+initConsole(() => updatePreview(view.state.doc.toString()));
 
 /* Reset button */
 document.getElementById("reset-btn").addEventListener("click", () => {

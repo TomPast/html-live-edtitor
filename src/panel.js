@@ -93,7 +93,9 @@ mobileTabBtns.forEach((btn) => {
     const tab = btn.dataset.tab;
     mobileTabBtns.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
-    workspace.classList.toggle("mobile-show-preview", tab === "preview");
+    workspace.classList.remove("mobile-show-preview", "mobile-show-console");
+    if (tab === "preview") workspace.classList.add("mobile-show-preview");
+    if (tab === "console") workspace.classList.add("mobile-show-console");
   });
 });
 

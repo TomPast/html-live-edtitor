@@ -24,6 +24,20 @@
             <button id="code-toggle" title="Collapse editor (Ctrl+E)"><span>collapse</span></button>
           </header>
           <div id="editor-mount"></div>
+          <div id="console-panel" class="collapsed">
+            <header id="console-bar">
+              <span class="console-title"><span class="console-dot"></span>console</span>
+              <span id="console-badge"></span>
+              <div class="toolbar-spacer"></div>
+              <button id="console-clear" title="Clear console">clear</button>
+              <button id="console-run" title="Re-run preview">run</button>
+            </header>
+            <div id="console-output"></div>
+            <div id="console-input-row">
+              <span class="console-input-chevron">›</span>
+              <input id="console-input" type="text" placeholder="evaluate expression…" autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
         </div>
         <div id="divider"></div>
         <div id="preview-pane">
@@ -34,6 +48,7 @@
       <nav id="mobile-tabs">
         <button class="mobile-tab active" data-tab="editor"><span class="mobile-tab-icon">&lt;/&gt;</span> code</button>
         <button class="mobile-tab" data-tab="preview"><span class="mobile-tab-icon">&#9655;</span> preview</button>
+        <button class="mobile-tab" data-tab="console"><span class="mobile-tab-icon">&#9641;</span> console</button>
       </nav>
     </div>
     <script type="module" src="/src/main.js"></script>
